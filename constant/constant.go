@@ -1,7 +1,7 @@
 package constant
 
 const (
-	DecimalSeparator = "," 
+	DecimalSeparator = "." 
 
 	IDZero = "nol"
 )
@@ -12,7 +12,7 @@ var (
 	}
 
 	IDTerbilangAwalanSatu = [...]string{
-		"", "sepuluh", "seratus", "seribu", "sepuluh ribu", "seratus ribu",
+		"", "sepuluh", "seratus", "seribu", "sepuluh ribu", "seratus ribu", "satu juta", "sepuluh juta", "seratus juta", "satu miliyar", "sepuluh miliyar", "seratus miliyar", "satu triliun", "sepuluh triliun", "seratus triliun",
 	}
 
 	IDTerbilangAkhiran = [...]string{

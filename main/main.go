@@ -8,9 +8,8 @@ import (
 )
 
 func main() {
-	num := flag.Float64("n", 0, "# of iterations")
+	v := flag.String("n", "0", "# of iterations")
 	flag.Parse()
 
-	v := float64(*num)
-	fmt.Println(functions.ConvertMoneyToWords(v))
+	fmt.Println(functions.Terbilang(*v))
 }

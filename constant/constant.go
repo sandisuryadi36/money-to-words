@@ -24,11 +24,11 @@ var (
 	}
 
 	ENDozen = [...]string{
-		"", "eleven", "twelfe", "thirdteen", "fourteen", "fifteen", "sixteen", "seventeen", "eightteen", "nineteen",
+		"", "eleven", "twelfe", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eightteen", "nineteen",
 	}
 
 	ENTens = [...]string{
-		"", "ten", "twenty", "thirdty", "fourty", "fifty", "sixty", "seventy", "eightty", "ninety",
+		"", "ten", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eightty", "ninety",
 	}
 
 	ENUnits = [...]string{

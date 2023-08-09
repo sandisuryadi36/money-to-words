@@ -2,7 +2,7 @@ package constant
 
 const (
 	DecimalSeparator = "." 
-
+	DecimalSeparatorWordID = "koma" 
 	IDZero = "nol"
 )
 

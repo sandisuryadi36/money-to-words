@@ -8,6 +8,31 @@ import (
 
 var maxIndex = len(C.IDUnits) - 1
 
+func NumbersToWords(numbers string, lang string) string {
+	res := ""
+	switch strings.ToLower(lang) {
+	case "id":
+		integer, decimal := processDecimal(numbers)
+		res = NumbersToWordsID(integer) + " " + C.DecimalSeparatorWordID + " " + decimalNumbersToWordsID(decimal)
+	case "en":
+		res = "English not implemented yet"
+		// res = NumbersToWordsEN(integer) + " " + C.DecimalSeparatorWordEN + " " + decimalNumbersToWordsEN(decimal)
+	}
+	return res
+}
+
+func processDecimal(numbers string) (integer, decimal string) {
+	seperates := strings.Split(numbers, C.DecimalSeparator)
+	if len(seperates) > 1 {
+		integer = seperates[0]
+		decimal = seperates[1]
+		return
+	}
+	integer = seperates[0]
+	decimal = ""
+	return
+}
+
 func digitToUnit(digit int) string {
 	curIndex := digit / 3
 	if curIndex <= maxIndex {
@@ -23,7 +48,7 @@ func numberToText(index int) string {
 	return ""
 }
 
-func NumberToWords(numbers string) string {
+func NumbersToWordsID(numbers string) string {
 	numbersLength := len(numbers)
 	numbersMaxIndex := numbersLength - 1
 
@@ -99,4 +124,17 @@ func NumberToWords(numbers string) string {
 	}
 
 	return strings.TrimSpace(result)
+}
+
+func decimalNumbersToWordsID(angka string) string {
+	words := []string{}
+	for _, char := range angka {
+		digit := int(char - '0')
+		if digit == 0 {
+			words = append(words, "nol")
+		} else {
+			words = append(words, numberToText(digit))
+		}
+	}
+	return strings.Join(words, " ")
 }

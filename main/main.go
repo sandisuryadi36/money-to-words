@@ -9,7 +9,8 @@ import (
 
 func main() {
 	v := flag.String("n", "0", "# of iterations")
+	lang := flag.String("l", "id", "# of iterations")
 	flag.Parse()
 
-	fmt.Println(functions.NumberToWords(*v))
+	fmt.Println(functions.NumbersToWords(*v, *lang))
 }

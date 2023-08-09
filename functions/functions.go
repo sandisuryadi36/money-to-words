@@ -36,6 +36,15 @@ func processDecimal(numbers string) (integer, decimal string) {
 	if len(seperates) > 1 {
 		integer = seperates[0]
 		decimal = seperates[1]
+		allZero := true
+		for _, d := range decimal {
+			if int(d -'0') != 0 {
+				allZero = false
+			}
+		}
+		if allZero {
+			decimal = ""
+		}
 		return
 	}
 	integer = seperates[0]

@@ -8,6 +8,10 @@ import (
 
 var maxIndex = len(C.IDUnits) - 1
 
+/*
+NumbersToWord convert numbers string to words with ID or EN language.
+Accept decimal number with dot "." separator
+*/
 func NumbersToWords(numbers string, lang string) string {
 	res := ""
 	switch strings.ToLower(lang) {
@@ -17,14 +21,14 @@ func NumbersToWords(numbers string, lang string) string {
 		if decimal != "" {
 			separator = " " + C.IDDecimalSeparatorWord + " "
 		}
-		res = NumbersToWordsID(integer) + separator + decimalNumbersToWords(decimal, "id")
+		res = numbersToWordsID(integer) + separator + decimalNumbersToWords(decimal, "id")
 	case "en":
 		integer, decimal := processDecimal(numbers)
 		separator := ""
 		if decimal != "" {
 			separator = " " + C.ENDecimalSeparatorWord + " "
 		}
-		res = NumbersToWordsEN(integer) + separator + decimalNumbersToWords(decimal, "en")
+		res = numbersToWordsEN(integer) + separator + decimalNumbersToWords(decimal, "en")
 	}
 	return res
 }
@@ -72,7 +76,20 @@ func numberToText(index int, lang string) string {
 	return ""
 }
 
-func NumbersToWordsID(numbers string) string {
+func decimalNumbersToWords(numbers string, lang string) string {
+	words := []string{}
+	for _, char := range numbers {
+		digit := int(char - '0')
+		if digit == 0 {
+			words = append(words, C.IDZero)
+		} else {
+			words = append(words, numberToText(digit, lang))
+		}
+	}
+	return strings.Join(words, " ")
+}
+
+func numbersToWordsID(numbers string) string {
 	numbersLength := len(numbers)
 	numbersMaxIndex := numbersLength - 1
 
@@ -150,20 +167,7 @@ func NumbersToWordsID(numbers string) string {
 	return strings.TrimSpace(result)
 }
 
-func decimalNumbersToWords(numbers string, lang string) string {
-	words := []string{}
-	for _, char := range numbers {
-		digit := int(char - '0')
-		if digit == 0 {
-			words = append(words, C.IDZero)
-		} else {
-			words = append(words, numberToText(digit, lang))
-		}
-	}
-	return strings.Join(words, " ")
-}
-
-func NumbersToWordsEN(numbers string) string {
+func numbersToWordsEN(numbers string) string {
 	numbersLength := len(numbers)
 	numbersMaxIndex := numbersLength - 1
 

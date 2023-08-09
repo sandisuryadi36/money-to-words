@@ -2,11 +2,9 @@ package functions
 
 import (
 	"strings"
-
-	C "github.com/sandisuryadi36/number-to-words/constant"
 )
 
-var maxIndex = len(C.IDUnits) - 1
+var maxIndex = len(idUnits) - 1
 
 /*
 NumbersToWord convert numbers string to words with ID or EN language.
@@ -19,14 +17,14 @@ func NumbersToWords(numbers string, lang string) string {
 		integer, decimal := processDecimal(numbers)
 		separator := ""
 		if decimal != "" {
-			separator = " " + C.IDDecimalSeparatorWord + " "
+			separator = " " + idDecimalSeparatorWord + " "
 		}
 		res = numbersToWordsID(integer) + separator + decimalNumbersToWords(decimal, "id")
 	case "en":
 		integer, decimal := processDecimal(numbers)
 		separator := ""
 		if decimal != "" {
-			separator = " " + C.ENDecimalSeparatorWord + " "
+			separator = " " + enDecimalSeparatorWord + " "
 		}
 		res = numbersToWordsEN(integer) + separator + decimalNumbersToWords(decimal, "en")
 	}
@@ -34,7 +32,7 @@ func NumbersToWords(numbers string, lang string) string {
 }
 
 func processDecimal(numbers string) (integer, decimal string) {
-	seperates := strings.Split(numbers, C.DecimalSeparator)
+	seperates := strings.Split(numbers, decimalSeparator)
 	if len(seperates) > 1 {
 		integer = seperates[0]
 		decimal = seperates[1]
@@ -49,9 +47,9 @@ func digitToUnit(digit int, lang string) string {
 	unitsArray := [22]string{}
 	switch strings.ToLower(lang) {
 	case "id":
-		unitsArray = C.IDUnits
+		unitsArray = idUnits
 	case "en":
-		unitsArray = C.ENUnits
+		unitsArray = enUnits
 	}
 
 	curIndex := digit / 3
@@ -65,12 +63,12 @@ func numberToText(index int, lang string) string {
 	numbersArray := [10]string{}
 	switch strings.ToLower(lang) {
 	case "id":
-		numbersArray = C.IDNumbers
+		numbersArray = idNumbers
 	case "en":
-		numbersArray = C.ENNumbers
+		numbersArray = enNumbers
 	}
 
-	if index >= 0 && index < len(C.IDNumbers) {
+	if index >= 0 && index < len(idNumbers) {
 		return numbersArray[index]
 	}
 	return ""
@@ -81,9 +79,9 @@ func decimalNumbersToWords(numbers string, lang string) string {
 	zero := "nol"
 	switch strings.ToLower(lang) {
 	case "id":
-		zero = C.IDZero
+		zero = idZero
 	case "en":
-		zero = C.ENZero
+		zero = enZero
 	}
 
 	for _, char := range numbers {
@@ -103,7 +101,7 @@ func numbersToWordsID(numbers string) string {
 
 	// Zero number
 	if numbersMaxIndex == 0 && numbers[0] == '0' {
-		return C.IDZero
+		return idZero
 	}
 
 	var space string
@@ -181,7 +179,7 @@ func numbersToWordsEN(numbers string) string {
 
 	// Zero number
 	if numbersMaxIndex == 0 && numbers[0] == '0' {
-		return C.ENZero
+		return enZero
 	}
 
 	var space string
@@ -213,7 +211,7 @@ func numbersToWordsEN(numbers string) string {
 							result += " " + digitToUnit(digitCount-1, "en")
 						}
 					} else {
-						result += space + C.ENDozen[nextNumber]
+						result += space + enDozen[nextNumber]
 						/* Proses Next current number */
 						if digitCount != 1 {
 							result += " " + digitToUnit(digitCount-1, "en")
@@ -221,7 +219,7 @@ func numbersToWordsEN(numbers string) string {
 					}
 				} else {
 					/* tens number */
-					result += space + C.ENTens[currentNumber]
+					result += space + enTens[currentNumber]
 				}
 			}
 		} else {

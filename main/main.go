@@ -11,5 +11,5 @@ func main() {
 	v := flag.String("n", "0", "# of iterations")
 	flag.Parse()
 
-	fmt.Println(functions.Terbilang(*v))
+	fmt.Println(functions.NumberToWords(*v))
 }

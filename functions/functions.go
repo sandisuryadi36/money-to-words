@@ -1,7 +1,7 @@
 package functions
 
 import (
-	"strconv"
+	"strings"
 
 	C "github.com/sandisuryadi36/number-to-words/constant"
 )
@@ -23,12 +23,12 @@ func numberToText(index int) string {
 	return ""
 }
 
-func Terbilang(angka string) string {
-	angkaLength := len(angka)
-	angkaMaxIndex := angkaLength - 1
+func NumberToWords(numbers string) string {
+	numbersLength := len(numbers)
+	numbersMaxIndex := numbersLength - 1
 
-	// Angka Nol
-	if angkaMaxIndex == 0 && angka[0] == '0' {
+	// Zero number
+	if numbersMaxIndex == 0 && numbers[0] == '0' {
 		return C.IDZero
 	}
 
@@ -36,57 +36,57 @@ func Terbilang(angka string) string {
 	var result string
 
 	i := 0
-	for i != angkaLength {
+	for i != numbersLength {
 
-		digitCount := angkaMaxIndex - i
+		digitCount := numbersMaxIndex - i
 		modGroup := digitCount % 3 // [2,1,0]
-		curAngka := int(angka[i] - '0')
+		currentNumber := int(numbers[i] - '0')
 
-		if digitCount == 3 && curAngka == 1 && (i == 0 || (int(angka[i-2]-'0') == 0 && int(angka[i-1]-'0') == 0)) {
-			/* Angka Seribu */
+		if digitCount == 3 && currentNumber == 1 && (i == 0 || (int(numbers[i-2]-'0') == 0 && int(numbers[i-1]-'0') == 0)) {
+			/* one hundred */
 			result += space + "seribu"
 		} else {
-			if curAngka != 0 {
+			if currentNumber != 0 {
 				if modGroup == 0 {
-					/* Angka Satuan Bukan Nol */
-					result += space + numberToText(curAngka) + digitToUnit(digitCount)
+					/* unit number not zero */
+					result += space + numberToText(currentNumber) + " " + digitToUnit(digitCount)
 				} else if modGroup == 2 {
-					/* Angka Ratusan */
-					if curAngka == 1 {
+					/* hundred number */
+					if currentNumber == 1 {
 						result += space + "seratus"
 					} else {
-						result += space + numberToText(curAngka) + " ratus"
+						result += space + numberToText(currentNumber) + " ratus"
 					}
 				} else {
-					/* Angka Sepuluh dan Belasan */
-					if curAngka == 1 {
-						i++ // Skip Next Angka
-						nextAngka := int(angka[i] - '0')
-						if nextAngka == 0 {
+					/* 10 - 19 number */
+					if currentNumber == 1 {
+						i++ // Skip Next number
+						nextNumber := int(numbers[i] - '0')
+						if nextNumber == 0 {
 							result += space + "sepuluh"
-							/* Proses Next Angka Sekarang */
-							if digitCount != 1 && (int(angka[i-2]-'0') != 0 || int(angka[i-1]-'0') != 0) {
+							/* Proses Next current number */
+							if digitCount != 1 && (int(numbers[i-1]-'0') != 0 || int(numbers[i]-'0') != 0) {
 								result += " " + digitToUnit(digitCount-1)
 							}
 						} else {
-							if nextAngka == 1 {
+							if nextNumber == 1 {
 								result += space + "sebelas"
 							} else {
-								result += space + numberToText(nextAngka) + " belas"
+								result += space + numberToText(nextNumber) + " belas"
 							}
-							/* Proses Next Angka Sekarang */
+							/* Proses Next current number */
 							if digitCount != 1 {
 								result += " " + digitToUnit(digitCount-1)
 							}
 						}
 					} else {
-						/* Angka Puluhan */
-						result += space + numberToText(curAngka) + " puluh"
+						/* tens number */
+						result += space + numberToText(currentNumber) + " puluh"
 					}
 				}
 			} else {
-				/* Angka Satuan Nol */
-				if modGroup == 0 && (int(angka[i-2]-'0') != 0 || int(angka[i-1]-'0') != 0) && digitCount != 0 {
+				/* unit number not zero */
+				if modGroup == 0 && (int(numbers[i-2]-'0') != 0 || int(numbers[i-1]-'0') != 0) && digitCount != 0 {
 					result += " " + digitToUnit(digitCount)
 				}
 			}
@@ -98,10 +98,5 @@ func Terbilang(angka string) string {
 		i++
 	}
 
-	return result
-}
-
-func sToi(val string) uint64 {
-	res, _ := strconv.ParseUint(val, 10, 64)
-	return res
+	return strings.TrimSpace(result)
 }

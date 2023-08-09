@@ -78,10 +78,18 @@ func numberToText(index int, lang string) string {
 
 func decimalNumbersToWords(numbers string, lang string) string {
 	words := []string{}
+	zero := "nol"
+	switch strings.ToLower(lang) {
+	case "id":
+		zero = C.IDZero
+	case "en":
+		zero = C.ENZero
+	}
+
 	for _, char := range numbers {
 		digit := int(char - '0')
 		if digit == 0 {
-			words = append(words, C.IDZero)
+			words = append(words, zero)
 		} else {
 			words = append(words, numberToText(digit, lang))
 		}

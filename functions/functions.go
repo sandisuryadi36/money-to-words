@@ -13,10 +13,13 @@ func NumbersToWords(numbers string, lang string) string {
 	switch strings.ToLower(lang) {
 	case "id":
 		integer, decimal := processDecimal(numbers)
-		res = NumbersToWordsID(integer) + " " + C.DecimalSeparatorWordID + " " + decimalNumbersToWordsID(decimal)
+		separator := ""
+		if decimal != "" {
+			separator = " " + C.DecimalSeparatorWordID + " "
+		}
+		res = NumbersToWordsID(integer) + separator + decimalNumbersToWordsID(decimal)
 	case "en":
 		res = "English not implemented yet"
-		// res = NumbersToWordsEN(integer) + " " + C.DecimalSeparatorWordEN + " " + decimalNumbersToWordsEN(decimal)
 	}
 	return res
 }

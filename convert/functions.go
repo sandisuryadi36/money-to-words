@@ -1,4 +1,4 @@
-package functions
+package convert
 
 import (
 	"strings"
@@ -7,7 +7,7 @@ import (
 var maxIndex = len(idUnits) - 1
 
 /*
-NumbersToWord convert numbers string to words with ID or EN language.
+NumbersToWords convert numbers string to words with ID or EN language.
 Accept decimal number with dot "." separator
 */
 func NumbersToWords(numbers string, lang string) string {

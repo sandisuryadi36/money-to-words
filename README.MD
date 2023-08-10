@@ -7,11 +7,11 @@ Convert numbers to words in multiple languages.
 
 ## Overview
 
-`NumberWordsConverter` is a lightweight Go package that provides a simple and efficient way to convert numeric strings into their word representations. This package supports both Indonesian (`id`) and English (`en`) languages, allowing you to easily transform decimal numbers into words.
+`NumberToWordsConverter` is a lightweight Go package that provides a simple and efficient way to convert numeric strings into their word representations. This package supports both Indonesian (`id`) and English (`en`) languages, allowing you to easily transform decimal numbers into words.
 
 ## Installation
 
-To use the `NumberWordsConverter` library in your Go project, follow these steps:
+To use the `NumberToWordsConverter` library in your Go project, follow these steps:
 
 1. Install the package using `go get`:
 ```bash

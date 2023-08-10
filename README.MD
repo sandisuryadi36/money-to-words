@@ -7,7 +7,7 @@ Convert numbers to words in multiple languages.
 
 ## Overview
 
-`NumberToWordsConverter` is a lightweight Go package that provides a simple and efficient way to convert numeric strings into their word representations. This package supports both Indonesian (`id`) and English (`en`) languages, allowing you to easily transform decimal numbers into words.
+`NumberToWordsConverter` is a lightweight Go package that provides a simple and efficient way to convert decimal number into their word representations. This package supports both Indonesian (`id`) and English (`en`) languages, allowing you to easily transform decimal numbers into words.
 
 ## Installation
 

@@ -1,6 +1,6 @@
 
 # Numbers To Words
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/sandisuryadi36/number-to-words/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/sandisuryadi36/number-to-words/blob/master/LICENSE) [![Go Reference](https://pkg.go.dev/badge/github.com/golang/go.svg)](https://pkg.go.dev/github.com/sandisuryadi36/number-to-words)
 
 
 Convert numbers to words in multiple languages.

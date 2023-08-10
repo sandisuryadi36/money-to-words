@@ -1,6 +1,6 @@
 
 # Numbers To Words
-[![License](https://github.com/sandisuryadi36/number-to-words/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/sandisuryadi36/number-to-words/blob/master/LICENSE)
 
 
 Convert numbers to words in multiple languages.

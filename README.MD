@@ -37,7 +37,7 @@ func main() {
 	language := "en"
 
 	words := convert.NumbersToWords(number, language)
-	fmt.Println(words) // Output: "twelve thousand three hundred forty-five point sixty-seven"
+	fmt.Println(words) // Output: "twelve thousand three hundred forty five point sixty-seven"
 }
 
 ```

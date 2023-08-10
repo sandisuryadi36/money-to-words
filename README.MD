@@ -29,31 +29,31 @@ package main
 
 import (
 	"fmt"
-	"github.com/yourusername/numberwordsconverter/convert"
+	"github.com/sandisuryadi36/number-to-words/convert"
 )
 
 func main() {
-	number := "12345.67"
+	number := 12345.67
 	language := "en"
 
-	words := convert.NumbersToWords(number, language)
+	words := convert.NumberToWords(number, language)
 	fmt.Println(words) // Output: "twelve thousand three hundred forty five point sixty-seven"
 }
 
 ```
 ## Features
 - Convert decimal numbers to words in Indonesian (id) or English (en) languages.
-- Handle various numeric formats, including thousands separators and decimal points.
-- Customize decimal separator and unit names based on the chosen language.
+- Handle decimal points.
+- Handle hight range number
 
 ## Function Reference
-`convert.NumbersToWords(numbers string, lang string) string`
+`convert.NumberToWords(numbers float64, lang string) string`
 
-Converts a numeric string into its word representation in the specified language.
+Converts a decimal number into its word representation in the specified language.
 
-- numbers: The numeric string to convert.
+- numbers: The decimal number to convert.
 - lang: The language for word conversion ("id" for Indonesian or "en" for English).
-- Returns: The word representation of the numeric string.
+- Returns: The word representation of the decimal number.
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 

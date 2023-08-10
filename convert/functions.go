@@ -1,32 +1,33 @@
 package convert
 
 import (
+	"fmt"
 	"strings"
 )
 
 var maxIndex = len(idUnits) - 1
 
 /*
-NumbersToWords convert numbers string to words with ID or EN language.
-Accept decimal number with dot "." separator
+NumberToWords convert decimal number to words with ID or EN language.
 */
-func NumbersToWords(numbers string, lang string) string {
+func NumberToWords(numbers float64, lang string) string {
+	num := fmt.Sprintf("%v", numbers)
 	res := ""
 	switch strings.ToLower(lang) {
 	case "id":
-		integer, decimal := processDecimal(numbers)
+		integer, decimal := processDecimal(num)
 		separator := ""
 		if decimal != "" {
 			separator = " " + idDecimalSeparatorWord + " "
 		}
-		res = numbersToWordsID(integer) + separator + decimalNumbersToWords(decimal, "id")
+		res = numberToWordsID(integer) + separator + decimalNumberToWords(decimal, "id")
 	case "en":
-		integer, decimal := processDecimal(numbers)
+		integer, decimal := processDecimal(num)
 		separator := ""
 		if decimal != "" {
 			separator = " " + enDecimalSeparatorWord + " "
 		}
-		res = numbersToWordsEN(integer) + separator + decimalNumbersToWords(decimal, "en")
+		res = numberToWordsEN(integer) + separator + decimalNumberToWords(decimal, "en")
 	}
 	return res
 }
@@ -38,7 +39,7 @@ func processDecimal(numbers string) (integer, decimal string) {
 		decimal = seperates[1]
 		allZero := true
 		for _, d := range decimal {
-			if int(d -'0') != 0 {
+			if int(d-'0') != 0 {
 				allZero = false
 			}
 		}
@@ -83,7 +84,7 @@ func numberToText(index int, lang string) string {
 	return ""
 }
 
-func decimalNumbersToWords(numbers string, lang string) string {
+func decimalNumberToWords(numbers string, lang string) string {
 	words := []string{}
 	zero := "nol"
 	switch strings.ToLower(lang) {
@@ -104,7 +105,7 @@ func decimalNumbersToWords(numbers string, lang string) string {
 	return strings.Join(words, " ")
 }
 
-func numbersToWordsID(numbers string) string {
+func numberToWordsID(numbers string) string {
 	numbersLength := len(numbers)
 	numbersMaxIndex := numbersLength - 1
 
@@ -182,7 +183,7 @@ func numbersToWordsID(numbers string) string {
 	return strings.TrimSpace(result)
 }
 
-func numbersToWordsEN(numbers string) string {
+func numberToWordsEN(numbers string) string {
 	numbersLength := len(numbers)
 	numbersMaxIndex := numbersLength - 1
 

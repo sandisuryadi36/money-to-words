@@ -46,7 +46,7 @@ func main() {
 - Handle various numeric formats, including thousands separators and decimal points.
 - Customize decimal separator and unit names based on the chosen language.
 
-## API Reference
+## Function Reference
 `convert.NumbersToWords(numbers string, lang string) string`
 
 Converts a numeric string into its word representation in the specified language.

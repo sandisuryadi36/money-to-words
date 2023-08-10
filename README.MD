@@ -47,7 +47,8 @@ func main() {
 - Customize decimal separator and unit names based on the chosen language.
 
 ## API Reference
-`convert.NumbersToWords(numbers string, lang string) string` Converts a numeric string into its word representation in the specified language.
+`convert.NumbersToWords(numbers string, lang string) string`
+Converts a numeric string into its word representation in the specified language.
 
 - numbers: The numeric string to convert.
 - lang: The language for word conversion ("id" for Indonesian or "en" for English).

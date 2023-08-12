@@ -44,7 +44,7 @@ func main() {
 ## Features
 - Convert decimal numbers to words in Indonesian (id) or English (en) languages.
 - Handle decimal points.
-- Handle hight range number
+- Handle high range number
 
 ## Function Reference
 `convert.NumberToWords(numbers float64, lang string) string`

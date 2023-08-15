@@ -1,17 +1,17 @@
 package convert
 
 import (
-	"fmt"
 	"strings"
 )
 
-var maxIndex = len(idUnits) - 1
+var maxIndexID = len(idUnits) - 1
+var maxIndexEN = len(enUnits) - 1
 
 /*
-NumberToWords convert decimal number to words with ID or EN language.
+NumberToWords convert string decimal number to words with ID or EN language.
+Use dot(.) for decimal separator
 */
-func NumberToWords(numbers float64, lang string) string {
-	num := fmt.Sprintf("%v", numbers)
+func NumberToWords(num, lang string) string {
 	res := ""
 	switch strings.ToLower(lang) {
 	case "id":
@@ -55,11 +55,14 @@ func processDecimal(numbers string) (integer, decimal string) {
 
 func digitToUnit(digit int, lang string) string {
 	unitsArray := [22]string{}
+	maxIndex := int(0)
 	switch strings.ToLower(lang) {
 	case "id":
 		unitsArray = idUnits
+		maxIndex = maxIndexID
 	case "en":
 		unitsArray = enUnits
+		maxIndex = maxIndexEN
 	}
 
 	curIndex := digit / 3
@@ -168,8 +171,12 @@ func numberToWordsID(numbers string) string {
 				}
 			} else {
 				/* unit number not zero */
-				if modGroup == 0 && (int(numbers[i-2]-'0') != 0 || int(numbers[i-1]-'0') != 0) && digitCount != 0 {
+				if modGroup == 0 && (int(numbers[i-1]-'0') != 0 || int(numbers[i]-'0') != 0) && digitCount != 0 {
 					result += " " + digitToUnit(digitCount, "id")
+				} else if i > 1 {
+					if modGroup == 0 && (int(numbers[i-2]-'0') != 0 || int(numbers[i]-'0') != 0) && digitCount != 0 {
+						result += " " + digitToUnit(digitCount, "id")
+					}
 				}
 			}
 		}
@@ -234,8 +241,12 @@ func numberToWordsEN(numbers string) string {
 			}
 		} else {
 			/* unit number not zero */
-			if modGroup == 0 && (int(numbers[i-2]-'0') != 0 || int(numbers[i-1]-'0') != 0) && digitCount != 0 {
+			if modGroup == 0 && (int(numbers[i-1]-'0') != 0 || int(numbers[i]-'0') != 0) && digitCount != 0 {
 				result += " " + digitToUnit(digitCount, "en")
+			} else if i > 1 {
+				if modGroup == 0 && (int(numbers[i-2]-'0') != 0 || int(numbers[i]-'0') != 0) && digitCount != 0 {
+					result += " " + digitToUnit(digitCount, "en")
+				}
 			}
 		}
 

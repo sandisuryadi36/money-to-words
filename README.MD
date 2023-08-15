@@ -3,11 +3,11 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/sandisuryadi36/number-to-words/blob/master/LICENSE) [![Go Reference](https://pkg.go.dev/badge/github.com/golang/go.svg)](https://pkg.go.dev/github.com/sandisuryadi36/number-to-words)
 
 
-Convert numbers to words in multiple languages.
+Convert string decimal numbers to words in multiple languages.
 
 ## Overview
 
-`NumberToWordsConverter` is a lightweight Go package that provides a simple and efficient way to convert decimal number into their word representations. This package supports both Indonesian (`id`) and English (`en`) languages, allowing you to easily transform decimal numbers into words.
+`NumberToWordsConverter` is a lightweight Go package that provides a simple and efficient way to convert string decimal number into their word representations. This package supports both Indonesian (`id`) and English (`en`) languages, allowing you to easily transform string decimal numbers into words.
 
 ## Installation
 
@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	number := 12345.67
+	number := "12345.67"
 	language := "en"
 
 	words := convert.NumberToWords(number, language)
@@ -42,16 +42,16 @@ func main() {
 
 ```
 ## Features
-- Convert decimal numbers to words in Indonesian (id) or English (en) languages.
+- Convert string decimal numbers to words in Indonesian (id) or English (en) languages.
 - Handle decimal points.
 - Handle high range number
 
 ## Function Reference
 `convert.NumberToWords(numbers float64, lang string) string`
 
-Converts a decimal number into its word representation in the specified language.
+Converts a string decimal number into its word representation in the specified language.
 
-- numbers: The decimal number to convert.
+- numbers: The string decimal number to convert.
 - lang: The language for word conversion ("id" for Indonesian or "en" for English).
 - Returns: The word representation of the decimal number.
 
